@@ -314,5 +314,5 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,pycharm,python
 
-../secret.json
+secret.json
 .idea/
