@@ -14,20 +14,20 @@ class DetailPost(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
 
 
-from .models import Classifier
-def classify_image(request):
-    if request.method == 'POST':
-        image = request.FILES['image']
-
-        # 이미지 전처리
-        # ...
-
-        # AI 모델 로드 및 예측
-        model = Classifier.load_model()
-        output = model(input_tensor)
-        predicted = max(output, 1)
-
-        # 예측 결과 반환
-        result = class_labels[predicted.item()]
-        return JsonResponse({'result': result})
+# from .models import Classifier
+# def classify_image(request):
+#     if request.method == 'POST':
+#         image = request.FILES['image']
+#
+#         # 이미지 전처리
+#         # ...
+#
+#         # AI 모델 로드 및 예측
+#         model = Classifier.load_model()
+#         output = model(input_tensor)
+#         predicted = max(output, 1)
+#
+#         # 예측 결과 반환
+#         result = class_labels[predicted.item()]
+#         return JsonResponse({'result': result})
 
