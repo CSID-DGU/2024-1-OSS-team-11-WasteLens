@@ -319,3 +319,5 @@ secrets.json
 
 media/
 yolov5s.pt
+
+yolov5/

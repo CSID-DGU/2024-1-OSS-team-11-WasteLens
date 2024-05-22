@@ -11,10 +11,10 @@
 
 <img src="{{ image_path }}" alt="Uploaded Image">
 
-{% if result_file %}
+{% if result_path %}
     <h2>Detected Objects:</h2>
     <ul>
-    {% for obj in result_file %}
+    {% for obj in result_path %}
         <li>Class: {{ obj.class }}, Confidence: {{ obj.confidence }}, Box: {{ obj.box }}</li>
     {% endfor %}
     </ul>

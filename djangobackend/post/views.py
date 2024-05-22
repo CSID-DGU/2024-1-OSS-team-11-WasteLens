@@ -78,6 +78,10 @@
 #         'image': image
 #     })
 
+from pathlib import Path
+import pathlib
+temp = pathlib.PosixPath
+pathlib.PosixPath = pathlib.WindowsPath
 import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
@@ -86,10 +90,10 @@ import torch
 from django.shortcuts import render, redirect
 import cv2
 
-# weight_path = os.path.join(os.getcwd(), 'best.pt')
-# model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=False)
+
+model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt', force_reload=True)
 # model.load_state_dict(torch.load(weight_path))
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
+# model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
 
 def detect_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
@@ -119,22 +123,21 @@ def detect_image(request):
                 f.write(line)
 
         # 이미지 렌더링
-        # return render(request, 'post/result.html', {
-        #     'image_path': image_path,
-        #     'result_path': result_path
-        # })
-        return redirect('result', image_path=image_path, results=results)
+        return render(request, 'post/result.html', {
+            'result_path': result_path,
+            'image_path': image_path,
+        })
+        # return redirect('result', result_path=result_path, image_path = 'image_path')
 
     # 이미지 업로드 폼 렌더링
     return render(request, 'post/detect_image.html')
 
-def result(request, image_path, results):
-    # 이미지 로드
-    image = cv2.imread(image_path)
-
-    # 결과 렌더링
-    return render(request, 'post/result.html', {
-        'image_path': image_path,
-        'results' : results,
-        'image': image
-    })
+# def result(request, result_path, image_path):
+#     # 이미지 로드
+#     # image = cv2.imread(result_path)
+#
+#     # 결과 렌더링
+#     return render(request, 'post/result.html', {
+#         'result_path': result_path,
+#         'image_path' : image_path
+#     })
