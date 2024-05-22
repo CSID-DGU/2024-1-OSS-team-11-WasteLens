@@ -41,7 +41,7 @@ def get_secret(setting):
 SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -80,7 +80,8 @@ ROOT_URLCONF = "djangobackend.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ['client'],
+        # "DIRS": ['client'],
+        "DIRS" : [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -171,3 +172,8 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_URL = '/static/'

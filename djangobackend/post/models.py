@@ -8,3 +8,4 @@ class Post(models.Model):
     def __str__(self):
         """A string representation of the model."""
         return self.title
+

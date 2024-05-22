@@ -1,0 +1,9 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image" required>
+    <button type="submit">Detect Objects</button>
+</form>
+{% endblock %}
