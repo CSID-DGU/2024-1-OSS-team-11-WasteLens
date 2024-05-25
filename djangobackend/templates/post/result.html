@@ -1,20 +1,25 @@
+
+
 {% extends 'main.html' %}
 {% block content %}
-<!--<h1>Detection Result</h1>-->
-<!--<img src="{{ image_path }}" alt="Detection Result Image">-->
-<!--<h2>Detected Objects:</h2>-->
-<!--<ul>-->
-<!--    {% for obj in detected_objects %}-->
-<!--    <li>Class: {{ obj.class_id }}, Confidence: {{ obj.confidence }}, Box: {{ obj.box }}</li>-->
-<!--    {% endfor %}-->
-<!--</ul>-->
-
-<img src="{{ image_path }}" alt="Uploaded Image">
-
-{% if result_path %}
+{% if detected_objects %}
     <h2>Detected Objects:</h2>
     <ul>
-    {% for obj in result_path %}
+    {% for obj in detected_objects %}
+        <li>Class: {{ obj.class_id }}, Confidence: {{ obj.confidence }}, Box: {{ obj.box }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No objects detected.</p>
+{% endif %}
+
+<h1>Detection Result</h1>
+<img src="{{ image_path }}" alt="Uploaded Image">
+
+{% if detected_objects %}
+    <h2>Detected Objects:</h2>
+    <ul>
+    {% for obj in detected_objects %}
         <li>Class: {{ obj.class }}, Confidence: {{ obj.confidence }}, Box: {{ obj.box }}</li>
     {% endfor %}
     </ul>
