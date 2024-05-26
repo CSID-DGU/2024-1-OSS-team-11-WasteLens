@@ -9,10 +9,7 @@ class Post(models.Model):
         """A string representation of the model."""
         return self.title
 
-<<<<<<< HEAD
 
-=======
->>>>>>> bf1a32c764775b10baf7a51bd8561b0ad61c9e30
 class DetectionResult(models.Model):
     class_id  = models.CharField(max_length=255)
     confidence = models.FloatField()
@@ -21,10 +18,7 @@ class DetectionResult(models.Model):
     x2 = models.IntegerField()
     y2 = models.IntegerField()
     image_path = models.CharField(max_length=255)
-<<<<<<< HEAD
     image = models.ImageField(upload_to='images/')
-=======
->>>>>>> bf1a32c764775b10baf7a51bd8561b0ad61c9e30
     result_path = models.CharField(max_length=255)
 
     def __str__(self):
