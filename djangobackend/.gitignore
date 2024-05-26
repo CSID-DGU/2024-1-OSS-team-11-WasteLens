@@ -316,7 +316,7 @@ $RECYCLE.BIN/
 
 secrets.json
 .idea/
-
+best.pt
 media/
 yolov5s.pt
 

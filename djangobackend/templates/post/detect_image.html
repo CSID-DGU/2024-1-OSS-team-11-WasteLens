@@ -1,9 +1,54 @@
 {% extends 'main.html' %}
 {% block content %}
 {% load static %}
+<h1>Upload or Take a Photo for Detection</h1>
+
+<!-- 이미지 업로드 폼 -->
+<h2>Upload a Photo</h2>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="file" name="image" required>
+    <label for="image">Upload Image:</label>
+    <input type="file" name="image" accept="image/*" required>
     <button type="submit">Detect Objects</button>
 </form>
+
+<hr>
+
+<!-- 카메라로 사진 찍기 -->
+<h2>Take a Photo</h2>
+<video id="video" width="320" height="240" autoplay></video>
+<button id="snap">Snap Photo</button>
+<canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+<form id="photo-form" method="POST" enctype="multipart/form-data" style="display:none;">
+    {% csrf_token %}
+    <input type="hidden" name="image" id="photo-input">
+    <button type="submit">Submit Photo</button>
+</form>
+
+<script>
+    // 카메라 접근 설정
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const snap = document.getElementById('snap');
+    const photoForm = document.getElementById('photo-form');
+    const photoInput = document.getElementById('photo-input');
+
+    // 사용자 미디어 요청
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            video.srcObject = stream;
+        })
+        .catch(err => {
+            console.error("Error accessing camera: ", err);
+        });
+
+    // 사진 찍기
+    snap.addEventListener('click', () => {
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, 320, 240);
+        const dataURL = canvas.toDataURL('image/jpeg');
+        photoInput.value = dataURL;
+        photoForm.style.display = 'block';
+    });
+</script>
 {% endblock %}
