@@ -1,0 +1,68 @@
+.lens {
+  display: flex;
+  justify-content: center;
+  margin-top: 95px;
+  width: 100vw;
+  height: 675px;
+}
+.contents {
+  height: 675px;
+  width: 350px;
+}
+.top {
+  height: 55px;
+  width: 350px;
+  margin-bottom: 40px;
+}
+.middle3 {
+  height: 420px;
+  width: 350px;
+}
+.bottom {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 70px;
+  width: 350px;
+}
+
+.logo2 {
+  height: 45px;
+}
+
+.resultArea {
+  margin-top: 140px;
+  margin-bottom: 60px;
+  width: 350px;
+  height: 250px;
+  line-height: 70px;
+}
+p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #5fb372;
+  letter-spacing: 7%;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.resultArea > div {
+  font-size: 24px;
+  font-weight: 900;
+  color: #4bac61;
+}
+
+.typeText {
+  font-size: 36px;
+  font-weight: 900;
+}
+.resultText {
+  font-size: 36px;
+  font-weight: 900;
+}
+.foodW {
+  color: #ab4b54;
+}
+.generalW {
+  color: #4b58ab;
+}

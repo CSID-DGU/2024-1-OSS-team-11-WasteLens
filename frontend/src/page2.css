@@ -1,0 +1,75 @@
+.lens {
+  display: flex;
+  justify-content: center;
+  margin-top: 95px;
+  width: 100vw;
+  height: 675px;
+}
+
+.contents {
+  height: 675px;
+  width: 350px;
+}
+
+.top {
+  height: 55px;
+  width: 350px;
+  margin-bottom: 40px;
+}
+
+.middle {
+  height: 520px;
+  width: 350px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 70px;
+  width: 350px;
+}
+
+.logo2 {
+  height: 45px;
+}
+
+.lensArea {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 346px;
+  height: 346px;
+  border-radius: 20px;
+  border: 2px solid #4bac61;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #5fb372;
+  letter-spacing: 7%;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.webcam {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.my-button {
+  margin-top: 10px;
+}
+
+.cap_button {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
