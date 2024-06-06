@@ -13,7 +13,7 @@ function ResultPage() {
   };
 
   const labelMapping = {
-    "chicken_bone": "치킨 뼈",
+    "chicken": "치킨 뼈",
     "watermelon": "수박",
     "apple": "사과",
     "pineapple": "파인애플",
@@ -23,8 +23,8 @@ function ResultPage() {
   };
 
   const getResultType = (label) => {
-    const foodWasteLabels = ["치킨 뼈", "수박", "사과"];
-    const generalWasteLabels = ["파인애플", "양파", "조개 껍질", "옥수수"];
+    const foodWasteLabels = ["수박", "사과"];
+    const generalWasteLabels = ["치킨 뼈", "파인애플", "양파", "조개 껍질", "옥수수"];
 
     if (foodWasteLabels.includes(label)) {
       return "음식물 쓰레기";

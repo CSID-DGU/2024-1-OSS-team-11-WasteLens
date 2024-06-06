@@ -15,6 +15,7 @@ from rest_framework.response import Response
 from .models import Image
 from .serializers import DetectionResultSerializer
 from django.db.models import Prefetch
+from ultralytics import YOLO
 
 @csrf_exempt
 @api_view(['POST'])
@@ -28,8 +29,8 @@ def upload_image(request):
         return Response({'success': False, 'error': 'No image provided'})
 
 
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt')
-
+# model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt')
+model = YOLO("Custom.pt")
 
 @api_view(['GET'])
 def get_detection_results(request, image_id):
@@ -37,16 +38,13 @@ def get_detection_results(request, image_id):
         image_instance = Image.objects.get(id=image_id)
         results = model(image_instance.image.path)
 
-        # Initialize variables to track the highest confidence result
-        highest_confidence = 0
         best_result = None
 
-        # Iterate through the detection results to find the one with the highest confidence
-        for result in results.xyxy[0]:
-            x_min, y_min, x_max, y_max, confidence, label = result.tolist()
+        for result in results:
+            if len(results[0].boxes.conf) != 0:
+                max_idx = torch.argmax(results[0].boxes.conf)
+                x_min, y_min, x_max, y_max, confidence, label = results[0].boxes.data[max_idx].tolist()
 
-            if confidence > highest_confidence:
-                highest_confidence = confidence
                 best_result = {
                     "label": model.names[int(label)],
                     "confidence": confidence,
@@ -55,6 +53,8 @@ def get_detection_results(request, image_id):
                     "x_max": int(x_max),
                     "y_max": int(y_max)
                 }
+            else:
+                break
 
         # If a best result was found, save it to the database
         if best_result:
