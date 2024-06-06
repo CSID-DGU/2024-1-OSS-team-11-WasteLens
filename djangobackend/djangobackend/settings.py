@@ -41,7 +41,7 @@ def get_secret(setting):
 SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -155,7 +155,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 STATICFILES_DIRS = [
         # 실제 static 파일은 모두 client 측에서 소유
-        os.path.join(ROOT_DIR, 'client/static')
+        os.path.join(ROOT_DIR, 'djangobackend/client/static')
     ]
 
 # Default primary key field type
@@ -169,9 +169,11 @@ REST_FRAMEWORK = {
     ]
 }
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-]
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = [
+#     # 'http://localhost:3000',
+#     'http://localhost:8000/lens',
+# ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
